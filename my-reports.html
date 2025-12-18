@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Reports — VIBRANIUM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+</head>
+
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="topbar">
+    <div class="brand" onclick="location.href='/'" style="cursor: pointer;">
+    <img src="logo.png" alt="Vibranium logo" class="brand-logo">
+    <span class="brand-txt">VIBRANIUM</span>
+</div>
+
+
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="analysis.html">How it works</a>
+    </nav>
+
+    <div class="actions">
+      <div id="userSection" class="user-section hidden">
+        <img id="userPhoto" class="user-photo" src="" alt="Profile" />
+
+        <div id="userDropdown" class="dropdown hidden">
+          <div id="userName" class="dropdown-name"></div>
+          <div id="userEmail" class="dropdown-email"></div>
+          <button class="dropdown-item" onclick="location.href='my-reports.html'">My Reports</button>
+          <button class="dropdown-item danger" onclick="handleLogout()">Logout</button>
+        </div>
+      </div>
+
+      <button id="openGoogle" class="ghost">Login with Google</button>
+    </div>
+  </header>
+
+  <!-- ===================== PAGE CONTENT ===================== -->
+  <main>
+    <section class="hero">
+      <div class="hero-badge">📄 Your AI Reports</div>
+      <h1 class="hero-title">Your <span>Startup Reports</span></h1>
+      <p class="hero-sub">Every analysis you have run is saved here.
+    </section>
+    <section class="history-section">
+  <div id="historyList"></div>
+</section>
+  </main>
+  <script src="script.js"></script>

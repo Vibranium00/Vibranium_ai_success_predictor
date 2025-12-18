@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>StartupAI — Predict Your Startup Success</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    
+
+</head>
+
+<body>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <header class="topbar">
+        
+        <div class="brand">
+          <img src="logo.png" alt="Vibranium logo" class="brand-logo">
+          <span class="brand-txt">VIBRANIUM</span>
+        </div>
+
+        <nav class="nav">
+            <a href="my-reports.html">My Reports</a>
+            <a href="analysis.html">How It Works</a>
+        </nav>
+
+        <div class="actions">
+            <!-- Login Button -->
+           <button id="openGoogle" class="btn ghost google-btn">
+  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+       alt="Google"
+       class="google-icon">
+  Login with Google
+</button>
+
+            <!-- User Profile Section -->
+            <div id="userSection" class="user-section hidden">
+                <img id="userPhoto" class="user-photo" src="" alt="User">
+                <div id="userDropdown" class="dropdown hidden">
+                    <div id="userName" class="dropdown-name"></div>
+                    <div id="userEmail" class="dropdown-email"></div>
+
+                    <a href="my-reports.html">
+                        <button class="dropdown-item">My Reports</button>
+                    </a>
+
+                    <button id="logoutBtn" class="dropdown-item danger">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <main>
+        <section class="hero">
+            <div class="hero-badge">⚡ AI-Powered Startup Analysis</div>
+
+            <h1 class="hero-title">
+                Predict Your Startup's <span>Success</span>
+            </h1>
+
+            <p class="hero-sub">
+                Get AI-powered insights on market demand, competition, and feasibility. 
+                Identify weaknesses and receive actionable recommendations to improve your chances.
+            </p>
+
+            <div class="hero-ctas">
+                <button class="pill" id="openFast">⚡ Fast Analysis →</button>
+                <button class="pill" id="openDeep">🎯 Deep Analysis →</button>
+            </div>
+        </section>
+
+
+
+
+
+        <!-- ===================== FEATURE SECTION ===================== -->
+        <section class="features-intro">
+            <h2>Everything You Need to Validate Your Idea</h2>
+            <p>Our AI analyzes multiple dimensions of your startup to give you a full feasibility report.</p>
+
+            <div class="feature-grid">
+
+                <article class="feature">
+                    <div class="icon">🧠</div>
+                    <h3>AI-Powered Insights</h3>
+                    <p>ML engine compares your idea to thousands of winning patterns.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="icon">📈</div>
+                    <h3>Market Intelligence</h3>
+                    <p>Understand demand, timing, and emerging trends.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="icon">🎯</div>
+                    <h3>Competitive Mapping</h3>
+                    <p>Identify strengths and weaknesses against competitors.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="icon">📊</div>
+                    <h3>Feasibility Score</h3>
+                    <p>Get a score showing how strong your idea is.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="icon">🛡️</div>
+                    <h3>Risk Assessment</h3>
+                    <p>Find potential blockers before they slow you down.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="icon">💡</div>
+                    <h3>Actionable Suggestions</h3>
+                    <p>Instant improvements to increase your chances of success.</p>
+                </article>
+
+            </div>
+        </section>
+
+
+
+
+
+        <!-- ===================== ANALYSIS CHOOSER ===================== -->
+        <section id="analysisSection" class="analysis-chooser">
+            <h2>Choose Your Analysis Mode</h2>
+            <p>Quick or deep — choose your preferred evaluation type.</p>
+
+            <div class="cards">
+                <!-- Fast -->
+                <div class="card" data-mode="fast">
+                    <div class="card-icon">⚡</div>
+                    <h3>Fast Analysis</h3>
+                    <p class="muted">Quick snapshot based on core idea details.</p>
+
+                    <ul>
+                        <li>Idea description</li>
+                        <li>Target market</li>
+                        <li>Problem & solution</li>
+                        <li>Industry</li>
+                    </ul>
+
+                    <button class="start" data-mode="fast">Start Fast Analysis →</button>
+                </div>
+
+                <!-- Deep -->
+                <div class="card recommended" data-mode="deep">
+                    <div class="badge">Recommended</div>
+                    <div class="card-icon">🎯</div>
+                    <h3>Deep Analysis</h3>
+                    <p class="muted">Full-scale report with in-depth business evaluation.</p>
+
+                    <ul>
+                        <li>Everything in Fast</li>
+                        <li>Business model</li>
+                        <li>Competition insights</li>
+                        <li>Team evaluation</li>
+                        <li>Market timing</li>
+                        <li>Go-to-market strategy</li>
+                    </ul>
+
+                    <button class="start" data-mode="deep">Start Deep Analysis →</button>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ===================== HISTORY ===================== -->
+        
+
+        <!-- ===================== FOOTER ===================== -->
+        <footer class="foot">
+            Made with ❤️ by team Vibranium — AI for founders.
+        </footer>
+    </main>
+
+
+
+
+  <!-- ===================== ANALYSIS MODAL ===================== -->
+  <div id="inputModal" class="modal hidden">
+    <div class="modal-card">
+      <button id="closeModal" class="modal-close">✕</button>
+      <h2 id="modalTitle">Start Analysis</h2>
+
+      <input id="name" placeholder="Startup / Project name" />
+      <input id="pitch" placeholder="One-line pitch (what you do)" />
+      <textarea id="description" placeholder="Describe the problem & solution"></textarea>
+
+      <select id="stage">
+       <option value="" disabled selected hidden>
+  Startup Stage
+</option>
+
+        <option value="Idea">Idea</option>
+        <option value="MVP">MVP</option>
+        <option value="Early Revenue">Early Revenue</option>
+        <option value="Scaling">Scaling</option>
+      </select>
+      <input id="teamSize" type="number" placeholder="Team size (number of founders/employees)" />
+      
+      
+<!-- ==========MULTIPLE option for INDUSTRY========== -->
+      <h3 class="section-title">Industry / Vertical</h3>
+<!-- ========== 1. Technology & Software ========== -->
+<div class="industry-group dropdown-toggle" data-target="techOptions">
+  Technology & Software (Core Tech)
+  <span class="arrow">▾</span>
+</div>
+
+<div class="checkbox-group hidden" id="techOptions">
+  <div class="checkbox-group">
+    <label><input type="checkbox" name="industry" value="SaaS"> SaaS</label>
+    <label><input type="checkbox" name="industry" value="Artificial Intelligence"> Artificial Intelligence (AI)</label>
+    <label><input type="checkbox" name="industry" value="Machine Learning"> Machine Learning (ML)</label>
+    <label><input type="checkbox" name="industry" value="Generative AI"> Generative AI</label>
+    <label><input type="checkbox" name="industry" value="DevTools"> DevTools</label>
+    <label><input type="checkbox" name="industry" value="Cybersecurity"> Cybersecurity</label>
+    <label><input type="checkbox" name="industry" value="Cloud Infrastructure"> Cloud Infrastructure</label>
+    <label><input type="checkbox" name="industry" value="Big Data & Analytics"> Big Data & Analytics</label>
+    <label><input type="checkbox" name="industry" value="IoT"> IoT</label>
+    <label><input type="checkbox" name="industry" value="No-Code / Low-Code"> No-Code / Low-Code</label>
+    <label><input type="checkbox" name="industry" value="Enterprise Software"> Enterprise Software</label>
+    <label><input type="checkbox" name="industry" value="Mobile Apps"> Mobile Apps</label>
+  </div>
+</div>
+
+
+<!-- ========== 2. Financial & Business Services ========== -->
+<div class="industry-group dropdown-toggle" data-target="financeOptions">
+  Financial & Business Services
+  <span class="arrow">▾</span>
+</div>
+
+<div class="checkbox-group hidden" id="financeOptions">
+
+  <div class="checkbox-group">
+    <label><input type="checkbox" name="industry" value="FinTech"> FinTech</label>
+    <label><input type="checkbox" name="industry" value="DeFi"> DeFi</label>
+    <label><input type="checkbox" name="industry" value="InsurTech"> InsurTech</label>
+    <label><input type="checkbox" name="industry" value="LegalTech"> LegalTech</label>
+    <label><input type="checkbox" name="industry" value="HRTech"> HRTech</label>
+    <label><input type="checkbox" name="industry" value="MarTech"> MarTech</label>
+    <label><input type="checkbox" name="industry" value="AdTech"> AdTech</label>
+    <label><input type="checkbox" name="industry" value="SalesTech"> SalesTech</label>
+    <label><input type="checkbox" name="industry" value="PropTech"> PropTech</label>
+    <label><input type="checkbox" name="industry" value="Payments"> Payments & Remittance</label>
+    <label><input type="checkbox" name="industry" value="E-commerce Enablers"> E-commerce Enablers</label>
+   </div>
+</div>
+
+      
+
+<!-- ========== 3. Consumer & Lifestyle ========== -->
+<div class="industry-group dropdown-toggle" data-target="consumerOptions">
+  Consumer & Lifestyle (B2C)
+  <span class="arrow">▾</span>
+</div>
+
+<div class="checkbox-group hidden" id="consumerOptions">
+
+  <div class="checkbox-group">
+    <label><input type="checkbox" name="industry" value="D2C"> D2C</label>
+    <label><input type="checkbox" name="industry" value="Marketplace"> E-commerce & Marketplace</label>
+    <label><input type="checkbox" name="industry" value="EdTech"> EdTech</label>
+    <label><input type="checkbox" name="industry" value="FoodTech"> FoodTech</label>
+    <label><input type="checkbox" name="industry" value="Gaming"> Gaming & Esports</label>
+    <label><input type="checkbox" name="industry" value="Social Media"> Social Media</label>
+    <label><input type="checkbox" name="industry" value="Health & Wellness"> Health & Wellness</label>
+    <label><input type="checkbox" name="industry" value="Fashion"> Fashion & Apparel</label>
+    <label><input type="checkbox" name="industry" value="TravelTech"> TravelTech</label>
+    <label><input type="checkbox" name="industry" value="Gig Economy"> Gig Economy</label>
+    <label><input type="checkbox" name="industry" value="Creator Economy"> Creator Economy</label>
+    <label><input type="checkbox" name="industry" value="Media"> Media & Entertainment</label>
+  </div>
+</div>
+
+
+
+<!-- ========== 4. Healthcare & Science ========== -->
+<div class="industry-group dropdown-toggle" data-target="healthOptions">
+  Healthcare & Science
+  <span class="arrow">▾</span>
+</div>
+
+<div class="checkbox-group hidden" id="healthOptions">
+   <div class="checkbox-group">
+     <label><input type="checkbox" name="industry" value="HealthTech"> HealthTech</label>
+    <label><input type="checkbox" name="industry" value="MedTech"> MedTech</label>
+    <label><input type="checkbox" name="industry" value="BioTech"> BioTech</label>
+    <label><input type="checkbox" name="industry" value="Pharma"> Pharma</label>
+    <label><input type="checkbox" name="industry" value="Mental Health"> Mental Health</label>
+    <label><input type="checkbox" name="industry" value="FemTech"> FemTech</label>
+    <label><input type="checkbox" name="industry" value="Telemedicine"> Telemedicine</label>
+    <label><input type="checkbox" name="industry" value="Genomics"> Genomics</label>
+    <label><input type="checkbox" name="industry" value="Life Sciences"> Life Sciences</label>
+  </div>
+</div>
+
+<!-- ========== 5. Industrial & Physical World ========== -->
+<div class="industry-group dropdown-toggle" data-target="industrialOptions">
+  Industrial & Physical World
+  <span class="arrow">▾</span>
+</div>
+
+<div class="checkbox-group hidden" id="industrialOptions">
+  <div class="checkbox-group">
+  <label><input type="checkbox" name="industry" value="AgriTech"> AgriTech</label>
+  <label><input type="checkbox" name="industry" value="CleanTech"> CleanTech</label>
+  <label><input type="checkbox" name="industry" value="ClimateTech"> ClimateTech</label>
+  <label><input type="checkbox" name="industry" value="Logistics"> Logistics & Supply Chain</label>
+  <label><input type="checkbox" name="industry" value="Mobility"> Mobility & Transportation</label>
+  <label><input type="checkbox" name="industry" value="EV"> Electric Vehicles</label>
+  <label><input type="checkbox" name="industry" value="Manufacturing"> Manufacturing</label>
+  <label><input type="checkbox" name="industry" value="Robotics"> Robotics & Drones</label>
+  <label><input type="checkbox" name="industry" value="Semiconductors"> Semiconductors</label>
+  <label><input type="checkbox" name="industry" value="ConstructionTech"> ConstructionTech</label>
+  <label><input type="checkbox" name="industry" value="Energy"> Energy & Sustainability</label>
+</div>
+</div>
+
+<!-- ========== 6. Emerging & Frontier Tech ========== -->
+<div class="industry-group dropdown-toggle" data-target="emergingOptions">
+  Emerging & Frontier Tech
+  <span class="arrow">▾</span>
+</div>
+
+<div class="checkbox-group hidden" id="emergingOptions">
+  <div class="checkbox-group">
+    <label><input type="checkbox" name="industry" value="Web3"> Web3 & Blockchain</label>
+    <label><input type="checkbox" name="industry" value="Crypto"> Crypto</label>
+    <label><input type="checkbox" name="industry" value="NFT"> NFTs & Metaverse</label>
+    <label><input type="checkbox" name="industry" value="SpaceTech"> SpaceTech</label>
+    <label><input type="checkbox" name="industry" value="VR/AR"> VR / AR</label>
+    <label><input type="checkbox" name="industry" value="Quantum Computing"> Quantum Computing</label>
+    <label><input type="checkbox" name="industry" value="DeepTech"> DeepTech</label>
+    <label><input type="checkbox" name="industry" value="DefenseTech"> DefenseTech</label>
+</div>
+</div>
+
+<!=====================7.OTHER=============================>
+<div class="checkbox-group">
+  <label>
+    <input type="checkbox" id="industryOtherCheck" name="industry" value="Other">
+    Other
+  </label>
+</div>
+
+<input type="description" id="industryOtherInput" class="hidden" placeholder="Enter custom industry"/>
+
+
+    <div style="display:flex;gap:10px;">
+        <button id="analyzeBtn" class="btn primary">
+        <span id="analyzeText">Analyze</span>
+        <span id="analyzeSpinner" class="spinner hidden"></span>
+        </button>
+        <button id="cancelBtn" class="btn ghost">Cancel</button>
+     </div>
+
+    <div id="formStatus" class="muted small" style="margin-top:10px;"></div>
+    </div>
+    </div>
+<div id="cursor-glow"></div>
+
+    <script src="script.js"></script>
+  
+</body>
+
+</html>

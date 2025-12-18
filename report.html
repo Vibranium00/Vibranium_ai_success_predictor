@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>StartupAI — Analysis Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR (same as home) -->
+  <header class="topbar">
+    <div class="brand" onclick="location.href='/'" style="cursor:pointer">
+      <img src="logo.png" class="brand-logo">
+      <span class="brand-text">VIBRANIUM</span>
+    </div>
+
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="my-reports.html">My Reports</a>
+    </nav>
+
+    <div class="actions">
+      <div id="userSection" class="user-section hidden">
+        <img id="userPhoto" class="user-photo" />
+        <div id="userDropdown" class="dropdown hidden">
+          <div id="userName" class="dropdown-name"></div>
+          <div id="userEmail" class="dropdown-email"></div>
+          <button class="dropdown-item danger" onclick="handleLogout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="report-page">
+
+
+    <div class="report-header">
+  <h1 id="startupName" class="report-title"></h1>
+  <p class="report-meta" id="metaInfo"></p>
+</div>
+
+<!-- SCORE VISUALIZATION -->
+<div id="scoreSection" class="score-section hidden">
+  <h2 class="score-title">📊 Startup Score Breakdown</h2>
+  <div id="overallScore" class="overall-score"></div>
+  <div id="scoreBars"></div>
+</div>
+
+<!-- AI REPORT CONTENT -->
+<div id="reportContent" class="report-card-content"></div>
+
+
+
+    <div class="report-actions">
+
+  <a id="pdfBtn" class="btn primary" target="_blank">📄 Download PDF</a>
+  <button class="btn ghost" onclick="location.href='/'">← Back to Home</button>
+</div>
+
+<!-- ===================== FEEDBACK (ADD BELOW) ===================== -->
+<section id="feedback" class="feedback-card">
+
+  <h2 class="feedback-title">⭐ Share Your Feedback</h2>
+  <p class="feedback-sub">
+    Help us improve our AI startup analysis
+  </p>
+
+  <input type="hidden" id="analysisId">
+
+  <div class="feedback-field">
+    <label>Rate this analysis</label>
+    <select id="rating">
+      <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+      <option value="4">⭐⭐⭐⭐ Good</option>
+      <option value="3">⭐⭐⭐ Average</option>
+      <option value="2">⭐⭐ Poor</option>
+      <option value="1">⭐ Bad</option>
+    </select>
+  </div>
+
+  <div class="feedback-field">
+    <label>Was this helpful?</label>
+    <select id="helpful">
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </div>
+
+  <div class="feedback-field">
+    <label>Your comments</label>
+    <textarea id="comment" rows="4"
+      placeholder="Suggestions, issues, or improvements..."></textarea>
+  </div>
+
+  <button class="btn primary feedback-btn" onclick="submitFeedback()">
+    Submit Feedback
+  </button>
+
+  <p id="feedbackStatus" class="muted small"></p>
+
+</section>
+
+
+  </main>
+
+  <script src="script.js"></script>
+  <script src="report.js"></script>
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const analysisId = params.get("id");
+
+  if (analysisId) {
+    document.getElementById("analysisId").value = analysisId;
+    document.getElementById("pdfBtn").href = `/api/pdf/${analysisId}`;
+  }
+</script>
+
+
+</body>
+</html>

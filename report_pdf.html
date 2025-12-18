@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+@font-face {
+  font-family: 'Lexend';
+  src: url('fonts/Lexend-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Emoji';
+  src: url('fonts/NotoEmoji-Regular.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Lexend', 'Emoji', Arial, sans-serif;
+  margin: 40px;
+  color: #111;
+}
+
+.cover {
+  border-bottom: 2px solid #6d28d9;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.meta {
+  color: #555;
+  margin-top: 8px;
+}
+
+.score-box {
+  margin-top: 24px;
+  width: 160px;
+  height: 100px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+h2 {
+  margin-top: 40px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.bar {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #7c3aed;
+}
+
+ul {
+  margin-left: 18px;
+}
+
+.footer {
+  margin-top: 60px;
+  font-size: 12px;
+  color: #666;
+}
+  </style>
+</head>
+
+<body>
+
+<div class="cover">
+  <div class="title">{{ name }}</div>
+  <div class="meta">
+    Industry: {{ industry }}<br>
+    Pitch: {{ pitch }}<br>
+    Description: {{ description }}<br>
+    Stage: {{ stage }}<br>
+    Competition: {{ competition }}<br>
+    Team size: {{ team_size }}<br>
+    Mode: {{ mode }}
+  </div>
+
+  <div class="score-box">
+    {{ overall_score }}
+    <div style="font-size:14px;font-weight:500;">Overall Score</div>
+  </div>
+</div>
+
+<h2>📊 Startup Score Breakdown</h2>
+{% for s in scores %}
+<div class="row">
+  <div>{{ s.factor }}</div>
+  <div>{{ s.score }}/100</div>
+</div>
+<div class="bar">
+  <div class="fill" style="width: {{ s.score }}%"></div>
+</div>
+{% endfor %}
+
+
+<h2>Key Strengths</h2>
+{% if strengths %}
+<ul>
+{% for i in strengths %}
+<li>{{ i | safe }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<h2>Key Weaknesses</h2>
+{% if weaknesses %}
+<ul>
+{% for i in weaknesses %}
+<li>{{ i | safe }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<h2>Actionable Improvements (Priority Order)</h2>
+{% if improvements %}
+<ol>
+{% for item in improvements %}
+<li>{{ item | safe }}</li>
+{% endfor %}
+</ol>
+{% endif %}
+
+<h2>90-Day Execution Roadmap</h2>
+{% if roadmap %}
+<ul>
+{% for step in roadmap %}
+<li>{{ step | safe }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<h2>Investor Red Flags</h2>
+{% if red_flags %}
+<ul>
+{% for i in red_flags %}
+<li>{{ i | safe }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<h2>Suggested KPIs to Track</h2>
+{% if kpis %}
+<ul>
+{% for kpi in kpis %}
+<li>{{ kpi | safe }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<div class="footer">
+This report is AI-generated and should not be considered financial advice.
+</div>
+
+</body>
+</html>
