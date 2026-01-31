@@ -49,7 +49,8 @@ highlights risks, and provides actionable recommendations
 https://vibranium0-vibranium-ai-success-predictor.hf.space/
 
 🎥 **Demo Video:**  
-Soon
+https://youtu.be/25dv1NDQ_CQ?si=Ly9boZzPBkFqfSFc
+
 
 📂 **Public Repo / HuggingFace Space:**  
 https://huggingface.co/spaces/Vibranium0/Vibranium_ai_success_predictor
